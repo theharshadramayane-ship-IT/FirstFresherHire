@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ChevronRight, Briefcase } from 'lucide-react';
 
-// Yahan humne Tech ke 10 domains aur Non-Tech ke domains ka complete data daala hai
+// Dono categories (Tech & Non-Tech) ka complete data
 const categoryData: Record<string, any> = {
   tech: {
     title: 'Tech Jobs',
@@ -55,10 +55,46 @@ const categoryData: Record<string, any> = {
   'non-tech': {
     title: 'Non-Tech Jobs',
     domains: {
-      'Human Resources (HR)': ['HR Executive', 'Technical Recruiter', 'HR Generalist'],
-      'Sales & Marketing': ['Sales Executive', 'Digital Marketing Executive', 'Business Development Executive'],
-      'Finance & Accounting': ['Accountant', 'Financial Analyst', 'Tax Consultant'],
-      'Customer Support': ['Customer Support Executive', 'Customer Success Manager'],
+      'Human Resources (HR)': [
+        'HR Executive', 'HR Generalist', 'Talent Acquisition Specialist', 'Technical Recruiter', 
+        'HR Operations', 'HR Business Partner (HRBP)', 'Payroll Specialist', 'Learning & Development (L&D) Manager'
+      ],
+      'Sales & Business Development': [
+        'Sales Executive', 'Business Development Executive (BDE)', 'Inside Sales Representative', 
+        'Account Executive', 'Enterprise Sales Manager', 'Pre-Sales Consultant', 'Sales Operations Analyst'
+      ],
+      'Marketing & Communications': [
+        'Digital Marketing Executive', 'Content Writer', 'SEO Specialist', 'Social Media Manager', 
+        'Performance Marketing Manager', 'Email Marketing Specialist', 'PR (Public Relations) Executive', 'Brand Manager'
+      ],
+      'Finance & Accounting': [
+        'Accountant', 'Accounts Executive', 'Financial Analyst', 'Accounts Payable/Receivable Specialist', 
+        'Tax Consultant', 'Auditor', 'Investment Banker', 'Chief Financial Officer (CFO)'
+      ],
+      'Operations & Supply Chain': [
+        'Operations Executive', 'Supply Chain Analyst', 'Logistics Manager', 'Procurement Specialist', 
+        'Inventory Manager', 'Warehouse Supervisor', 'Vendor Management Specialist'
+      ],
+      'Customer Support & Success': [
+        'Customer Support Executive', 'Customer Success Manager (CSM)', 'Technical Support Engineer (Non-coding)', 
+        'Call Center Agent', 'Client Relationship Manager', 'Helpdesk Coordinator'
+      ],
+      'Product Management': [
+        'Product Manager (PM)', 'Associate Product Manager (APM)', 'Product Owner', 
+        'Product Analyst', 'Growth Product Manager'
+      ],
+      'Project & Program Management': [
+        'Project Manager', 'Program Manager', 'Project Coordinator', 'Scrum Master', 
+        'Agile Coach', 'PMO (Project Management Office) Analyst'
+      ],
+      'Legal & Compliance': [
+        'Corporate Lawyer', 'Legal Counsel', 'Compliance Officer', 'Paralegal', 
+        'Contract Manager', 'Intellectual Property (IP) Specialist'
+      ],
+      'Administration & Office Management': [
+        'Office Administrator', 'Executive Assistant (EA)', 'Front Desk Executive', 
+        'Office Manager', 'Facilities Coordinator'
+      ]
     }
   }
 };
@@ -91,7 +127,7 @@ export default function CategoryFilter() {
         
         {/* COLUMN 1: Domains (Scrollable list) */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 h-[600px] overflow-y-auto">
-          <h2 className="text-lg font-bold text-gray-700 mb-4 px-2 sticky top-0 bg-white pb-2">1. Choose a Domain</h2>
+          <h2 className="text-lg font-bold text-gray-700 mb-4 px-2 sticky top-0 bg-white pb-2 z-10">1. Choose a Domain</h2>
           <div className="space-y-2">
             {Object.keys(currentCategory.domains).map((domain) => (
               <button
@@ -103,8 +139,8 @@ export default function CategoryFilter() {
                     : 'hover:bg-gray-50 text-gray-700'
                 }`}
               >
-                <span className="font-medium">{domain}</span>
-                <ChevronRight size={18} />
+                <span className="font-medium text-sm">{domain}</span>
+                <ChevronRight size={18} className="shrink-0" />
               </button>
             ))}
           </div>
@@ -112,7 +148,7 @@ export default function CategoryFilter() {
 
         {/* COLUMN 2: Roles (Scrollable list) */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 h-[600px] overflow-y-auto">
-          <h2 className="text-lg font-bold text-gray-700 mb-4 px-2 sticky top-0 bg-white pb-2">2. Choose a Role</h2>
+          <h2 className="text-lg font-bold text-gray-700 mb-4 px-2 sticky top-0 bg-white pb-2 z-10">2. Choose a Role</h2>
           
           {!selectedDomain ? (
             <div className="text-center py-10 text-gray-400 flex flex-col items-center">
@@ -124,7 +160,6 @@ export default function CategoryFilter() {
               {currentCategory.domains[selectedDomain].map((role: string) => (
                 <button
                   key={role}
-                  // URL mein category, domain aur role pass kar rahe hain
                   onClick={() => navigate(`/?category=${category}&domain=${selectedDomain}&role=${role}`)}
                   className="w-full flex items-center gap-3 p-3 rounded-lg text-left text-gray-700 hover:bg-brand/10 hover:text-brand transition-colors group border border-transparent hover:border-brand/20"
                 >
