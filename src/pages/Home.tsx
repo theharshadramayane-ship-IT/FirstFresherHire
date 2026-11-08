@@ -41,19 +41,17 @@ export default function Home() {
   }, [debouncedSearch, role]);
 
   return (
-    // 👇 Yahan humne background animation class add ki hai
-    <div className="relative min-h-screen bg-slate-50 bg-growth-animation">
+    // 👇 Yahan background class change ki hai aur base color soft green kiya hai
+    <div className="relative min-h-screen bg-[#f8fafc] bg-nature-rain">
       
-      {/* Content Wrapper (z-10 taaki text animation ke upar dikhe) */}
       <div className="relative z-10 max-w-6xl mx-auto p-4 py-8">
         
         <div className="mb-8 text-center">
-          {/* Heading with Glow Effect */}
-          <h1 className="text-4xl font-extrabold text-gray-800 text-glow tracking-tight">
-            Grow India, Get Hired 🇮🇳
+          <h1 className="text-4xl font-extrabold text-gray-800 tracking-tight">
+            Grow Your Career Naturally 🌱
           </h1>
           <p className="text-gray-600 mt-3 text-lg font-medium">
-            Discover fresh jobs and build a stronger future.
+            Discover fresh opportunities and let your future bloom.
           </p>
         </div>
 
@@ -100,9 +98,9 @@ export default function Home() {
         )}
 
         {(role || domain) && (
-          <div className="mb-6 bg-white/80 backdrop-blur-sm border border-blue-100 text-blue-800 p-4 rounded-lg flex justify-between items-center shadow-sm">
-            <p>Showing results for: <strong>{role}</strong> {domain && `in ${domain}`}</p>
-            <Link to="/" className="text-sm font-semibold underline hover:text-blue-600">Clear Filter</Link>
+          <div className="mb-6 bg-white/80 backdrop-blur-md border border-gray-200 text-gray-800 p-4 rounded-lg flex justify-between items-center shadow-sm">
+            <p>Showing results for: <strong className="text-brand">{role}</strong> {domain && `in ${domain}`}</p>
+            <Link to="/" className="text-sm font-semibold underline hover:text-brand">Clear Filter</Link>
           </div>
         )}
 
@@ -116,7 +114,7 @@ export default function Home() {
           <Search className="absolute left-4 top-3.5 text-gray-400" size={20} />
           <input 
             type="text" placeholder="Search jobs by title or category..." 
-            className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand shadow-lg bg-white/90 backdrop-blur-sm"
+            className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand shadow-lg bg-white/90 backdrop-blur-md"
             value={search} onChange={(e) => setSearch(e.target.value)}
           />
         </div>
@@ -128,7 +126,7 @@ export default function Home() {
             {jobs.length > 0 ? (
               jobs.map(job => <JobCard key={job.id} job={job} />)
             ) : (
-              <p className="text-center text-gray-500 py-10 bg-white/50 rounded-lg">No jobs found for "{role || search}".</p>
+              <p className="text-center text-gray-500 py-10 bg-white/50 rounded-lg backdrop-blur-sm">No jobs found for "{role || search}".</p>
             )}
           </div>
         )}
