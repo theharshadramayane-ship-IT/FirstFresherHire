@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ChevronRight, Briefcase } from 'lucide-react';
 
-// Dono categories (Tech & Non-Tech) ka complete data
 const categoryData: Record<string, any> = {
   tech: {
     title: 'Tech Jobs',
@@ -96,6 +95,42 @@ const categoryData: Record<string, any> = {
         'Office Manager', 'Facilities Coordinator'
       ]
     }
+  },
+  // 👇 NAYA GOVT SECTION ADD KIYA HAI
+  govt: {
+    title: 'Government Tech Jobs',
+    domains: {
+      'Civil Engineering': [
+        'Junior Engineer (JE)', 'Assistant Engineer (AE)', 'Executive Trainee'
+      ],
+      'Electrical Engineering': [
+        'Junior Engineer (JE)', 'Assistant Engineer', 'Executive Trainee', 'JTO'
+      ],
+      'Mechanical Engineering': [
+        'Junior Engineer (JE)', 'Assistant Engineer', 'Executive Trainee', 'Management Trainee'
+      ],
+      'Electronics & Comm. (ECE)': [
+        'Junior Engineer (JE)', "Scientist 'B'", 'Technical Officer', 'JTO'
+      ],
+      'Computer Science / IT': [
+        "Scientist 'B'", 'IT Specialist', 'Assistant Engineer (IT)', 'Software Engineer'
+      ],
+      'Data Science & AI': [
+        "Scientist 'B' (DS/AI)", 'Data Analyst', 'Research Associate'
+      ],
+      'Chemical Engineering': [
+        'Executive Trainee', 'Management Trainee', 'Engineer'
+      ],
+      'Instrumentation': [
+        'Executive Trainee', 'Junior Engineer', 'Technical Assistant'
+      ],
+      'Mining / Metallurgy': [
+        'Management Trainee (Technical)', 'Mining Sirdar', 'Assistant Foreman'
+      ],
+      'Aeronautical / Aerospace': [
+        'Scientist/Engineer', 'Technical Officer'
+      ]
+    }
   }
 };
 
@@ -104,7 +139,6 @@ export default function CategoryFilter() {
   const navigate = useNavigate();
   const [selectedDomain, setSelectedDomain] = useState<string | null>(null);
 
-  // Current category check karein (tech ya non-tech)
   const currentCategory = categoryData[category || ''];
 
   if (!currentCategory) {
@@ -113,7 +147,6 @@ export default function CategoryFilter() {
 
   return (
     <div className="max-w-5xl mx-auto p-4 py-8">
-      {/* Header */}
       <div className="flex items-center gap-4 mb-8">
         <Link to="/" className="p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition">
           <ArrowLeft size={20} className="text-gray-700" />
@@ -124,8 +157,7 @@ export default function CategoryFilter() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        {/* COLUMN 1: Domains (Scrollable list) */}
+        {/* Domains */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 h-[600px] overflow-y-auto">
           <h2 className="text-lg font-bold text-gray-700 mb-4 px-2 sticky top-0 bg-white pb-2 z-10">1. Choose a Domain</h2>
           <div className="space-y-2">
@@ -134,9 +166,7 @@ export default function CategoryFilter() {
                 key={domain}
                 onClick={() => setSelectedDomain(domain)}
                 className={`w-full flex items-center justify-between p-3 rounded-lg text-left transition-colors ${
-                  selectedDomain === domain
-                    ? 'bg-brand text-white shadow-md'
-                    : 'hover:bg-gray-50 text-gray-700'
+                  selectedDomain === domain ? 'bg-brand text-white shadow-md' : 'hover:bg-gray-50 text-gray-700'
                 }`}
               >
                 <span className="font-medium text-sm">{domain}</span>
@@ -146,10 +176,9 @@ export default function CategoryFilter() {
           </div>
         </div>
 
-        {/* COLUMN 2: Roles (Scrollable list) */}
+        {/* Roles */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 h-[600px] overflow-y-auto">
           <h2 className="text-lg font-bold text-gray-700 mb-4 px-2 sticky top-0 bg-white pb-2 z-10">2. Choose a Role</h2>
-          
           {!selectedDomain ? (
             <div className="text-center py-10 text-gray-400 flex flex-col items-center">
               <Briefcase size={32} className="mb-2 opacity-50" />
@@ -172,7 +201,6 @@ export default function CategoryFilter() {
             </div>
           )}
         </div>
-
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { CheckCircle2, Clock, Code2, Briefcase, ArrowRight } from 'lucide-react';
+import { CheckCircle2, Clock, Code2, Briefcase, ArrowRight, Landmark } from 'lucide-react';
 import type { Assessment } from '../data/types';
 import { Link } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ export default function Dashboard() {
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        {/* LEFT SIDE: Candidature Progress */}
+        {/* LEFT SIDE */}
         <div className="lg:col-span-2 space-y-6">
           <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div className="flex justify-between items-center mb-4">
@@ -54,35 +54,41 @@ export default function Dashboard() {
           </section>
         </div>
 
-        {/* RIGHT SIDE: Tiles */}
-        <div className="lg:col-span-1 space-y-6">
+        {/* RIGHT SIDE TILES */}
+        <div className="lg:col-span-1 space-y-4">
           <h2 className="text-xl font-bold text-gray-800 mb-2">Explore Jobs</h2>
 
-          {/* Tech Tile */}
           <Link to="/filter/tech" className="block group">
-            <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl p-6 text-white shadow-md hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1">
+            <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl p-5 text-white shadow-md hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1">
               <div className="flex justify-between items-start">
-                <div className="bg-white/20 p-3 rounded-lg">
-                  <Code2 size={28} />
-                </div>
+                <div className="bg-white/20 p-2.5 rounded-lg"><Code2 size={24} /></div>
                 <ArrowRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
-              <h3 className="text-2xl font-bold mt-4">Tech Jobs</h3>
-              <p className="text-blue-100 text-sm mt-1">Frontend, Backend, Full Stack, AI & more.</p>
+              <h3 className="text-lg font-bold mt-3">Tech Jobs</h3>
+              <p className="text-blue-100 text-xs mt-1">Frontend, Backend, AI & more.</p>
             </div>
           </Link>
 
-          {/* Non-Tech Tile */}
-          <Link to="/filter/non-tech" className="block group">
-            <div className="bg-gradient-to-br from-orange-400 to-rose-500 rounded-xl p-6 text-white shadow-md hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1">
+          {/* NEW GOVT TILE */}
+          <Link to="/filter/govt" className="block group">
+            <div className="bg-gradient-to-br from-emerald-500 to-teal-700 rounded-xl p-5 text-white shadow-md hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1">
               <div className="flex justify-between items-start">
-                <div className="bg-white/20 p-3 rounded-lg">
-                  <Briefcase size={28} />
-                </div>
+                <div className="bg-white/20 p-2.5 rounded-lg"><Landmark size={24} /></div>
                 <ArrowRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
-              <h3 className="text-2xl font-bold mt-4">Non-Tech Jobs</h3>
-              <p className="text-orange-100 text-sm mt-1">HR, Sales, Marketing, Finance & more.</p>
+              <h3 className="text-lg font-bold mt-3">Govt Tech Jobs</h3>
+              <p className="text-emerald-100 text-xs mt-1">PSU, SSC JE, Railways & more.</p>
+            </div>
+          </Link>
+
+          <Link to="/filter/non-tech" className="block group">
+            <div className="bg-gradient-to-br from-orange-400 to-rose-500 rounded-xl p-5 text-white shadow-md hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-1">
+              <div className="flex justify-between items-start">
+                <div className="bg-white/20 p-2.5 rounded-lg"><Briefcase size={24} /></div>
+                <ArrowRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+              <h3 className="text-lg font-bold mt-3">Non-Tech Jobs</h3>
+              <p className="text-orange-100 text-xs mt-1">HR, Sales, Finance & more.</p>
             </div>
           </Link>
         </div>
