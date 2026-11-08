@@ -20,3 +20,31 @@
     background-position: 0 40px;
   }
 }
+/* ... purana money rain code ... */
+
+/* 🇮🇳 BACKGROUND ANIMATION: GROWTH & JOBS */
+
+/* Floating dots animation */
+.bg-growth-animation {
+  background-image: 
+    radial-gradient(circle, rgba(79, 70, 229, 0.15) 2px, transparent 2px),
+    radial-gradient(circle, rgba(16, 185, 129, 0.15) 2px, transparent 2px);
+  background-size: 40px 40px, 60px 60px;
+  background-position: 0 0, 20px 20px;
+  animation: floatUp 10s linear infinite;
+}
+
+/* Upward moving effect (Growth) */
+@keyframes floatUp {
+  0% {
+    background-position: 0 0, 20px 20px;
+  }
+  100% {
+    background-position: 0 -100px, 20px -120px;
+  }
+}
+
+/* Glowing text effect for heading */
+.text-glow {
+  text-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
+}
