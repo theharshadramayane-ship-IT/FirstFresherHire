@@ -1,8 +1,6 @@
-// src/pages/Dashboard.tsx
-import { CheckCircle2, Clock, AlertCircle } from 'lucide-react';
+import { CheckCircle2, Clock } from 'lucide-react';
 import type { Assessment } from '../data/types';
 
-// Mock data (In a real app, this comes from an API)
 const assessmentData: Assessment = {
   id: "FED-2026",
   role: "Associate Frontend Developer",
@@ -16,7 +14,6 @@ export default function Dashboard() {
     <div className="max-w-3xl mx-auto p-4 py-8">
       <h1 className="text-2xl font-bold text-gray-800 mb-6">Candidature Progress</h1>
       
-      {/* Status Card */}
       <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8" aria-label="Assessment Status">
         <div className="flex justify-between items-center mb-4">
           <span className={`px-3 py-1 rounded-full text-xs font-bold ${
@@ -35,12 +32,10 @@ export default function Dashboard() {
         </p>
       </section>
 
-      {/* Timeline */}
       <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-6" aria-label="Hiring Timeline">
         <h3 className="font-bold text-gray-800 mb-6">Candidature Progress & Timeline</h3>
         
         <div className="relative border-l-2 border-gray-200 ml-3 space-y-8 pb-4">
-          {/* Step 1: Completed */}
           <div className="relative pl-6">
             <div className="absolute -left-[17px] top-0 bg-green-500 text-white rounded-full p-1">
               <CheckCircle2 size={16} />
@@ -50,7 +45,6 @@ export default function Dashboard() {
             <p className="text-gray-500 text-sm mt-1">All 16 questions recorded and queued.</p>
           </div>
 
-          {/* Step 2: In Progress */}
           <div className="relative pl-6">
             <div className="absolute -left-[17px] top-0 bg-orange-400 text-white rounded-full p-1 animate-pulse">
               <Clock size={16} />

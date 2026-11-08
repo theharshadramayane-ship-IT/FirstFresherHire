@@ -1,4 +1,3 @@
-// src/components/JobCard.tsx
 import { Link } from 'react-router-dom';
 import { MapPin, Clock, Building2 } from 'lucide-react';
 import type { Job } from '../data/types';
