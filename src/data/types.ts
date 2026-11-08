@@ -8,6 +8,7 @@ export interface Job {
   tags: string[];
   posted: string;
   description?: string;
+  applyLink?: string; // 👈 Added this line
 }
 
 export interface Assessment {
