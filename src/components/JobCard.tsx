@@ -7,6 +7,9 @@ interface JobCardProps {
 }
 
 export default function JobCard({ job }: JobCardProps) {
+  // Fallback link agar API se applyLink na aaye
+  const finalApplyLink = job.applyLink || "https://www.google.com/search?q=jobs+for+" + encodeURIComponent(job.title);
+
   return (
     <article className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow focus-within:ring-2 focus-within:ring-brand relative overflow-hidden">
       
@@ -32,13 +35,11 @@ export default function JobCard({ job }: JobCardProps) {
         ))}
       </div>
 
-      {/* 👇 DIVIDER & SALARY AREA WITH CASH RAIN ANIMATION 👇 */}
-      <div className="mt-5 pt-4 border-t flex justify-between items-center relative overflow-hidden group">
+      {/* 👇 DIVIDER & SALARY AREA 👇 */}
+      <div className="mt-5 pt-4 border-t flex justify-between items-center relative overflow-hidden group min-h-[60px]">
         
-        {/* CASH RAIN BACKGROUND */}
-        <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-           {/* Background color change on hover for better visibility of notes */}
-           <div className="absolute inset-0 bg-green-50/50"></div>
+        {/* CASH RAIN BACKGROUND (Slow & Spaced) */}
+        <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
            <div className="money-rain absolute inset-0"></div>
         </div>
 
@@ -47,21 +48,25 @@ export default function JobCard({ job }: JobCardProps) {
           {job.salary}
         </span>
         
-        {/* Buttons */}
-        <div className="flex gap-2 relative z-10">
+        {/* Buttons Area */}
+        <div className="flex gap-3 relative z-10 shrink-0">
           <Link 
             to={`/job/${job.id}`} 
-            className="text-gray-600 border border-gray-300 px-3 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition-colors bg-white shadow-sm"
+            className="text-gray-700 border border-gray-300 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-100 transition-colors bg-white shadow-sm"
           >
             Details
           </Link>
+          
+          {/* 👇 SHINY APPLY BUTTON 👇 */}
           <a 
-            href={job.applyLink}
+            href={finalApplyLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-brand text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-indigo-700 transition-colors flex items-center gap-1 shadow-sm"
+            className="relative overflow-hidden group/btn bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-5 py-2 rounded-lg text-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center gap-2"
           >
-            Apply <ExternalLink size={14} />
+            {/* Shine effect */}
+            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite]"></span>
+            <span className="relative z-10 flex items-center gap-1">Apply <ExternalLink size={14} /></span>
           </a>
         </div>
       </div>

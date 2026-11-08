@@ -1,27 +1,24 @@
 @import "tailwindcss";
 /* ... aapka purana code ... */
 /* ... purana code (growth animation etc) ... */
-
-/* 💵 MONEY RAIN ANIMATION (Cash Notes) */
+/* 💵 SLOW & SPACED CASH RAIN ANIMATION */
 
 .money-rain {
-  /* Ye ek SVG hai jo cash note jaisa dikhta hai */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 32' fill='%2384cc16'%3E%3Crect x='2' y='2' width='60' height='28' rx='3' stroke='%23065f46' stroke-width='2' fill='%23a3e635'/%3E%3Ccircle cx='32' cy='16' r='8' fill='%23065f46' opacity='0.2'/%3E%3Ctext x='32' y='20' font-size='10' font-family='Arial' font-weight='bold' fill='%23065f46' text-anchor='middle'%3E₹500%3C/text%3E%3C/svg%3E");
-  background-size: 40px 20px; /* Note ka size */
-  background-repeat: repeat;
-  animation: fall 1.5s linear infinite;
+  /* Ek badhiya sa currency note SVG */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 32' fill='%2322c55e'%3E%3Crect x='2' y='2' width='60' height='28' rx='3' stroke='%23166534' stroke-width='2' fill='%2386efac'/%3E%3Ccircle cx='32' cy='16' r='8' fill='%23166534' opacity='0.2'/%3E%3Ctext x='32' y='20' font-size='10' font-family='Arial' font-weight='bold' fill='%23166534' text-anchor='middle'%3E%E2%82%B9500%3C/text%3E%3C/svg%3E");
+  background-size: 50px 25px; /* Note ka size thoda bada kiya */
+  background-repeat: space; /* 👈 space lagaya taaki notes dur-dur rahein */
+  animation: slowFall 8s linear infinite; /* 👈 8s matlab slow motion */
 }
 
-@keyframes fall {
+@keyframes slowFall {
   0% {
-    background-position: 0 -40px;
+    background-position: 0 -50px;
   }
   100% {
-    /* Thoda tilt (angled) rain effect ke liye X-axis change kiya hai */
-    background-position: 40px 40px; 
+    background-position: 30px 200px; /* Halka sa slant aur neeche girna */
   }
 }
-
 /* 🇮🇳 BACKGROUND ANIMATION: GROWTH & JOBS */
 
 /* Floating dots animation */
@@ -47,4 +44,10 @@
 /* Glowing text effect for heading */
 .text-glow {
   text-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
+}
+/* ✨ Button Shine Animation */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
 }
