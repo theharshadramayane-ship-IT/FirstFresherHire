@@ -32,17 +32,18 @@ export default function JobCard({ job }: JobCardProps) {
         ))}
       </div>
 
-      {/* 👇 DIVIDER & SALARY AREA WITH MONEY RAIN ANIMATION 👇 */}
+      {/* 👇 DIVIDER & SALARY AREA WITH CASH RAIN ANIMATION 👇 */}
       <div className="mt-5 pt-4 border-t flex justify-between items-center relative overflow-hidden group">
         
-        {/* ANIMATION BACKGROUND (Sirf salary area ke peeche) */}
-        <div className="absolute inset-0 pointer-events-none opacity-20 group-hover:opacity-100 transition-opacity duration-300">
-           {/* Custom CSS classes for animation */}
+        {/* CASH RAIN BACKGROUND */}
+        <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+           {/* Background color change on hover for better visibility of notes */}
+           <div className="absolute inset-0 bg-green-50/50"></div>
            <div className="money-rain absolute inset-0"></div>
         </div>
 
         {/* Salary Text */}
-        <span className="font-bold text-gray-800 relative z-10 text-lg tracking-tight">
+        <span className="font-extrabold text-gray-800 relative z-10 text-lg tracking-tight drop-shadow-sm">
           {job.salary}
         </span>
         
@@ -50,7 +51,7 @@ export default function JobCard({ job }: JobCardProps) {
         <div className="flex gap-2 relative z-10">
           <Link 
             to={`/job/${job.id}`} 
-            className="text-gray-600 border border-gray-300 px-3 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition-colors bg-white"
+            className="text-gray-600 border border-gray-300 px-3 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition-colors bg-white shadow-sm"
           >
             Details
           </Link>
@@ -58,7 +59,7 @@ export default function JobCard({ job }: JobCardProps) {
             href={job.applyLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-brand text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-indigo-700 transition-colors flex items-center gap-1"
+            className="bg-brand text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-indigo-700 transition-colors flex items-center gap-1 shadow-sm"
           >
             Apply <ExternalLink size={14} />
           </a>
