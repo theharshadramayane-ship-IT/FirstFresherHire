@@ -8,7 +8,7 @@ interface JobCardProps {
 
 export default function JobCard({ job }: JobCardProps) {
   return (
-    <article className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow focus-within:ring-2 focus-within:ring-brand">
+    <article className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow focus-within:ring-2 focus-within:ring-brand relative overflow-hidden">
       
       <div className="flex justify-between items-start">
         <div>
@@ -32,14 +32,25 @@ export default function JobCard({ job }: JobCardProps) {
         ))}
       </div>
 
-      <div className="mt-5 pt-4 border-t flex justify-between items-center">
-        <span className="font-bold text-gray-800">{job.salary}</span>
+      {/* 👇 DIVIDER & SALARY AREA WITH MONEY RAIN ANIMATION 👇 */}
+      <div className="mt-5 pt-4 border-t flex justify-between items-center relative overflow-hidden group">
+        
+        {/* ANIMATION BACKGROUND (Sirf salary area ke peeche) */}
+        <div className="absolute inset-0 pointer-events-none opacity-20 group-hover:opacity-100 transition-opacity duration-300">
+           {/* Custom CSS classes for animation */}
+           <div className="money-rain absolute inset-0"></div>
+        </div>
+
+        {/* Salary Text */}
+        <span className="font-bold text-gray-800 relative z-10 text-lg tracking-tight">
+          {job.salary}
+        </span>
         
         {/* Buttons */}
-        <div className="flex gap-2">
+        <div className="flex gap-2 relative z-10">
           <Link 
             to={`/job/${job.id}`} 
-            className="text-gray-600 border border-gray-300 px-3 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition-colors"
+            className="text-gray-600 border border-gray-300 px-3 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 transition-colors bg-white"
           >
             Details
           </Link>
