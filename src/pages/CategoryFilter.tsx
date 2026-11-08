@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ChevronRight, Briefcase } from 'lucide-react';
 
-// Data Structure for Categories, Domains, and Roles
-const categoryData = {
+// Yahan humne dono categories ka data define kiya hai
+const categoryData: Record<string, any> = {
   tech: {
     title: 'Tech Jobs',
     domains: {
@@ -29,8 +29,8 @@ export default function CategoryFilter() {
   const navigate = useNavigate();
   const [selectedDomain, setSelectedDomain] = useState<string | null>(null);
 
-  // TypeScript safety check
-  const currentCategory = categoryData[category as keyof typeof categoryData];
+  // Current category check karein (tech ya non-tech)
+  const currentCategory = categoryData[category || ''];
 
   if (!currentCategory) {
     return <div className="p-8 text-center text-red-500">Category not found!</div>;
@@ -50,7 +50,7 @@ export default function CategoryFilter() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
-        {/* LEFT COLUMN: Domains */}
+        {/* COLUMN 1: Domains */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
           <h2 className="text-lg font-bold text-gray-700 mb-4 px-2">1. Choose a Domain</h2>
           <div className="space-y-2">
@@ -71,7 +71,7 @@ export default function CategoryFilter() {
           </div>
         </div>
 
-        {/* RIGHT COLUMN: Roles */}
+        {/* COLUMN 2: Roles */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
           <h2 className="text-lg font-bold text-gray-700 mb-4 px-2">2. Choose a Role</h2>
           
@@ -82,11 +82,11 @@ export default function CategoryFilter() {
             </div>
           ) : (
             <div className="space-y-2">
-              {currentCategory.domains[selectedDomain as keyof typeof currentCategory.domains].map((role) => (
+              {currentCategory.domains[selectedDomain].map((role: string) => (
                 <button
                   key={role}
-                  // Navigate to Home page with domain and role as URL parameters
-                  onClick={() => navigate(`/?domain=${selectedDomain}&role=${role}`)}
+                  // URL mein category, domain aur role pass kar rahe hain
+                  onClick={() => navigate(`/?category=${category}&domain=${selectedDomain}&role=${role}`)}
                   className="w-full flex items-center gap-3 p-3 rounded-lg text-left text-gray-700 hover:bg-brand/10 hover:text-brand transition-colors group border border-transparent hover:border-brand/20"
                 >
                   <div className="bg-gray-100 p-2 rounded-full group-hover:bg-white">
