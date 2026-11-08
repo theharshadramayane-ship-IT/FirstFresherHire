@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import JobDetails from './pages/JobDetails';
+import CategoryFilter from './pages/CategoryFilter'; // Naya page import kiya
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/job/:id" element={<JobDetails />} />
+            
+            {/* Naya Route add kiya hai tree filtering ke liye */}
+            <Route path="/filter/:category" element={<CategoryFilter />} /> 
           </Routes>
         </main>
       </div>
